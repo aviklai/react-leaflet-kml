@@ -8,7 +8,7 @@ test('ReactLeafletKml', () => {
 
   const component = ReactTestUtils.renderIntoDocument(
     <Map>
-      <ReactLeafletKml kml='' />
+      <ReactLeafletKml kml={new Document()}/>
     </Map>
   ) as any;
   expect(component.leafletElement._container).toBeDefined()  
