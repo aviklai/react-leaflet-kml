@@ -5,13 +5,13 @@ import { ContextProps, MapLayer, withLeaflet } from 'react-leaflet';
 import 'leaflet-kml';
 
 interface IProps extends ContextProps {
-  kml: XMLDocument;
+  kml: string;
 }
 
 class ReactLeafletKml extends MapLayer<IProps> {
   public createLeafletElement(props: IProps) {
     const { kml } = props;
-    this.leafletElement = new L.KML(kml);    
+    this.leafletElement = new L.KML(new DOMParser().parseFromString(kml, "text/xml"));    
     if (this.props.leaflet.map.options.preferCanvas) {
       setTimeout((map: LeafletContext.map) => {        
           // Handling react-leaflet bug of canvas renderer not updating

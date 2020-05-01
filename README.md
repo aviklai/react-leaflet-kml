@@ -14,8 +14,6 @@ import { Map } from 'react-leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
 
 const kmlText='YOUR KML FILE AS TEXT';
-const parser = new DOMParser();
-const kml = parser.parseFromString(kmlText, 'text/xml');
 
 export class App extends React.Component { 
   render() {    
@@ -24,7 +22,7 @@ export class App extends React.Component {
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
-        <ReactLeafletKml kml={kml} />
+        <ReactLeafletKml kml={kmlText} />
       </Map>
     );
   }
