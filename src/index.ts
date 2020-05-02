@@ -20,11 +20,16 @@ class ReactLeafletKml extends MapLayer<IProps> {
     }
     return this.leafletElement;
   }
+
+  public updateLeafletElement () {
+    if (this.props.leaflet.map.options.preferCanvas) {
+      this.props.leaflet.map._renderer._update();
+    }   
+  }
   
   public componentWillUnmount() {
     super.componentWillUnmount();  
     if (this.props.leaflet.map.options.preferCanvas) {
-      // Handling react-leaflet bug of canvas renderer not updating
       this.props.leaflet.map._renderer._update();
     }    
   }
