@@ -1,16 +1,20 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
+import { MapContainer } from 'react-leaflet';
 import ReactLeafletKml from '../index';
-import { Map } from 'react-leaflet';
 import * as ReactTestUtils from 'react-dom/test-utils';
 
 test('ReactLeafletKml', () => {
   expect(ReactLeafletKml);
 
-  const component = ReactTestUtils.renderIntoDocument(
-    <Map>
-      <ReactLeafletKml kml={new Document()}/>
-    </Map>
+  const dom = ReactTestUtils.renderIntoDocument(
+    <div>
+      <MapContainer>
+        <ReactLeafletKml kml={new Document()}/>
+      </MapContainer>
+    </div>
   ) as any;
-  expect(component.leafletElement._container).toBeDefined()  
+  const component = ReactDOM.findDOMNode(dom.childNodes[0]) as any;
+  expect(component).toBeInstanceOf(HTMLElement);  
 
 });
