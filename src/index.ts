@@ -1,36 +1,16 @@
-import React, { useEffect } from 'react';
 import * as L from 'leaflet';
-import {  LayerProps, LeafletContextInterface, createLayerComponent, useLeafletContext } from '@react-leaflet/core';
+import {  LayerProps, LeafletContextInterface, createLayerComponent } from '@react-leaflet/core';
 import 'leaflet-kml';
+import { useEffect } from 'react';
 
 interface IProps {
   kml: XMLDocument;
 }
 
-// class ReactLeafletKml extends MapLayer<IProps> {  
-
-//   public updateLeafletElement () {
-//     if (this.props.leaflet.map.options.preferCanvas) {
-//       this.props.leaflet.map._renderer._update();
-//     }   
-//   }
-  
-//   public componentWillUnmount() {
-//     super.componentWillUnmount();  
-//     if (this.props.leaflet.map.options.preferCanvas) {
-//       this.props.leaflet.map._renderer._update();
-//     }    
-//   }
-// }
-
-// export default withLeaflet(ReactLeafletKml);
-
-
-const updateOnCanvas = () => {
-  const context = useLeafletContext();
-  if (context.map.options.preferCanvas) {
+const updateOnCanvas = (map: LeafletContextInterface["map"]) => {
+  if (map.options.preferCanvas) {
     // @ts-ignore  
-    context.map._renderer._update();
+    map._renderer._update();
   }   
 }
 
@@ -38,7 +18,7 @@ const updateOnCanvas = () => {
 const createLeafletElement = (props: IProps, context: LeafletContextInterface) => {
   useEffect(() => {
     return () => {
-      updateOnCanvas();
+      updateOnCanvas(context.map);
     }
   }, []);
   
@@ -56,7 +36,8 @@ const createLeafletElement = (props: IProps, context: LeafletContextInterface) =
 }
 
 const updateLeafletElement = (instance: L.Layer, props: IProps, prevProps: IProps) => {
-  updateOnCanvas();
+  // @ts-ignore
+  updateOnCanvas(instance._map);
 }
 
 
