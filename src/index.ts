@@ -1,13 +1,14 @@
 import * as L from 'leaflet';
 import {  LayerProps, LeafletContextInterface, createLayerComponent } from '@react-leaflet/core';
-import 'leaflet-kml';
 import { useEffect } from 'react';
+// @ts-ignore
+import 'leaflet-kml';
 
 interface IProps {
   kml: XMLDocument;
 }
 
-const updateOnCanvas = (map: LeafletContextInterface["map"]) => {
+const updateOnCanvas = (map: L.Map) => {
   if (map.options.preferCanvas) {
     // @ts-ignore  
     map._renderer._update();
@@ -26,7 +27,7 @@ const createLeafletElement = (props: IProps, context: LeafletContextInterface) =
   // @ts-ignore
   const instance = new L.KML(kml);    
   if (context.map.options.preferCanvas) {
-    setTimeout((map: LeafletContextInterface["map"]) => {        
+    setTimeout((map: L.Map) => {        
         // Handling react-leaflet bug of canvas renderer not updating
         // @ts-ignore
         map._renderer._update();
