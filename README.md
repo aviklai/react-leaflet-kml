@@ -4,8 +4,11 @@
 
 React leaflet wrapper of leaflet-kml.
 
-Installation instructions:
-run `npm install --save react-leaflet-kml`
+## Requirements
+This version of the library supports React Leaflet v2.
+
+## Installation instructions:
+run `npm install --save react-leaflet-kml@"^1.x.x"`
 
 Usage example:
 ```
