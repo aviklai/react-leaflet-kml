@@ -1,38 +1,44 @@
-// @ts-nocheck
-import * as React from 'react';
 import * as L from 'leaflet';
-import { ContextProps, MapLayer, withLeaflet } from 'react-leaflet';
+import {  LayerProps, LeafletContextInterface, createLayerComponent } from '@react-leaflet/core';
 import 'leaflet-kml';
+import { useEffect } from 'react';
 
-interface IProps extends ContextProps {
+interface IProps {
   kml: XMLDocument;
 }
 
-class ReactLeafletKml extends MapLayer<IProps> {
-  public createLeafletElement(props: IProps) {
-    const { kml } = props;
-    this.leafletElement = new L.KML(kml);    
-    if (this.props.leaflet.map.options.preferCanvas) {
-      setTimeout((map: LeafletContext.map) => {        
-          // Handling react-leaflet bug of canvas renderer not updating
-          map._renderer._update();
-      }, 0, this.props.leaflet.map) 
-    }
-    return this.leafletElement;
-  }
-
-  public updateLeafletElement () {
-    if (this.props.leaflet.map.options.preferCanvas) {
-      this.props.leaflet.map._renderer._update();
-    }   
-  }
-  
-  public componentWillUnmount() {
-    super.componentWillUnmount();  
-    if (this.props.leaflet.map.options.preferCanvas) {
-      this.props.leaflet.map._renderer._update();
-    }    
-  }
+const updateOnCanvas = (map: LeafletContextInterface["map"]) => {
+  if (map.options.preferCanvas) {
+    // @ts-ignore  
+    map._renderer._update();
+  }   
 }
 
-export default withLeaflet(ReactLeafletKml);
+
+const createLeafletElement = (props: IProps, context: LeafletContextInterface) => {
+  useEffect(() => {
+    return () => {
+      updateOnCanvas(context.map);
+    }
+  }, []);
+  
+  const { kml } = props;
+  // @ts-ignore
+  const instance = new L.KML(kml);    
+  if (context.map.options.preferCanvas) {
+    setTimeout((map: LeafletContextInterface["map"]) => {        
+        // Handling react-leaflet bug of canvas renderer not updating
+        // @ts-ignore
+        map._renderer._update();
+    }, 0, context.map) 
+  }
+  return { instance, context }; 
+}
+
+const updateLeafletElement = (instance: L.Layer, props: IProps, prevProps: IProps) => {
+  // @ts-ignore
+  updateOnCanvas(instance._map);
+}
+
+
+export default createLayerComponent<L.Layer, LayerProps & IProps>(createLeafletElement, updateLeafletElement);
