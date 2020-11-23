@@ -1,6 +1,6 @@
 {
   "name": "react-leaflet-kml",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "React leaflet wrapper of leaflet-kml",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

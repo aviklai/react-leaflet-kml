@@ -1,8 +1,9 @@
+// @ts-ignore
+import 'leaflet-kml';
 import * as L from 'leaflet';
 import {  LayerProps, LeafletContextInterface, createLayerComponent } from '@react-leaflet/core';
 import { useEffect } from 'react';
-// @ts-ignore
-import 'leaflet-kml';
+
 
 interface IProps {
   kml: XMLDocument;
