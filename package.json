@@ -1,6 +1,6 @@
 {
   "name": "react-leaflet-kml",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "React leaflet wrapper of leaflet-kml",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -43,8 +43,8 @@
   "homepage": "https://github.com/aviklai/react-leaflet-kml#readme",
   "peerDependencies": {
     "leaflet": "^1.5.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
     "react-leaflet": "^3.0.0"
   },
   "devDependencies": {
