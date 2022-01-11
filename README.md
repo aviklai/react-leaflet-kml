@@ -13,7 +13,7 @@ https://github.com/aviklai/react-leaflet-kml/tree/v1
 run `npm install --save react-leaflet-kml`
 
 Usage example:
-```
+```javascript
 import * as React from 'react';
 import { MapContainer } from 'react-leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
