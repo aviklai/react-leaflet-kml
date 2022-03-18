@@ -16,7 +16,7 @@ Usage example:
 ```javascript
 import * as React from 'react';
 import { MapContainer } from 'react-leaflet';
-import ReactLeafletKml from 'react-leaflet-kml';
+import ReactLeafletKml from 'react-leaflet-kml'; // react-leaflet-kml must be loaded AFTER react-leaflet
 
 const kmlText='YOUR KML FILE AS TEXT';
 const parser = new DOMParser();
