@@ -2,10 +2,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/aviklai/react-leaflet-kml/badge.svg?branch=master)](https://coveralls.io/github/aviklai/react-leaflet-kml?branch=master) 
 [![npm version](https://img.shields.io/npm/v/react-leaflet-kml.svg)](https://www.npmjs.com/package/react-leaflet-kml)
 
-React leaflet v3 wrapper of leaflet-kml.
+React leaflet v3 and v4 wrapper of leaflet-kml.
 
 ## Requirements
-The current version of this library supports React Leaflet v3. <br/>
+The current version of this library supports React Leaflet v3 and v4. <br/>
 If you are using React Leaflet v2, please use the previous version of this library. Please see the documentation here: <br/>
 https://github.com/aviklai/react-leaflet-kml/tree/v1
 
