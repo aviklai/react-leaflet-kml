@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 interface IProps {
   kml: XMLDocument;
   kmlOptions?: {
-    iconOptions : Object;
+    iconOptions : object;
   }
 }
 
