@@ -27,6 +27,18 @@ describe('ReactLeafletKml', () => {
     ) as any;
     const component = ReactDOM.findDOMNode(dom.childNodes[0]) as any;
     expect(component).toBeInstanceOf(HTMLElement);
-  }); 
+  });
+  
+  it('Kml with iconOptions', () => {
+    const dom = ReactTestUtils.renderIntoDocument(
+      <div>
+        <MapContainer preferCanvas>
+          <ReactLeafletKml kml={new Document()} kmlOptions={{ iconOptions: { iconSize: [15, 15] } }}/>
+        </MapContainer>
+      </div>
+    ) as any;
+    const component = ReactDOM.findDOMNode(dom.childNodes[0]) as any;
+    expect(component).toBeInstanceOf(HTMLElement);
+  });
   
 });
