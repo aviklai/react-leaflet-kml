@@ -20,13 +20,7 @@ const updateOnCanvas = (map: L.Map) => {
 }
 
 
-const createLeafletElement = (props: IProps, context: LeafletContextInterface) => {
-  useEffect(() => {
-    return () => {
-      updateOnCanvas(context.map);
-    }
-  }, []);
-  
+const createLeafletElement = (props: IProps, context: LeafletContextInterface) => {  
   const { kml, kmlOptions } = props;
   // @ts-ignore
   const instance = new L.KML(kml, kmlOptions);    
