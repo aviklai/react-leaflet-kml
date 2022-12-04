@@ -19,7 +19,6 @@ const updateOnCanvas = (map: L.Map) => {
   }   
 }
 
-
 const createLeafletElement = (props: IProps, context: LeafletContextInterface) => {  
   const { kml, kmlOptions } = props;
   // @ts-ignore
@@ -29,7 +28,12 @@ const createLeafletElement = (props: IProps, context: LeafletContextInterface) =
         // Handling react-leaflet bug of canvas renderer not updating
         // @ts-ignore
         map._renderer._update();
-    }, 0, context.map) 
+    }, 0, context.map);
+    instance.onRemove = function (map: L.Map) {
+      this.clearLayers();
+       // @ts-ignore
+      map?._renderer?.fireEvent("update");
+    }; 
   }
   return { instance, context }; 
 }
