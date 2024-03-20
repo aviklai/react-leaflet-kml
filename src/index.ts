@@ -28,7 +28,7 @@ const createLeafletElement = (props: IProps, context: LeafletContextInterface) =
     setTimeout((map: L.Map) => {        
         // Handling react-leaflet bug of canvas renderer not updating
         // @ts-ignore
-        map._renderer._update();
+        map._renderer?._update();
     }, 0, context.map) 
   }
   return { instance, context }; 
